@@ -1,0 +1,43 @@
+<div class='flight-details'>
+    <h1>Flight Details</h1>
+    <table>
+        <tr>
+            <th>Airport</th>
+            <th>Airline</th>
+            <th>Flight No</th>
+            <th>Departure</th>
+        </tr>
+        <tr>
+            <td><%= flight.airport %></td>
+            <td><%= flight.airline %></td>
+            <td><%= flight.flightNo %></td>
+            <td><%= flight.departs %></td>
+        </tr>
+        </table>
+        <h1>Destinations</h1>
+        <table>
+            <tr>
+                <th>Airport</th>
+                <th>Arrival</th>
+            </tr>
+            <% flight.destinations.forEach(function(d) { %>
+                <tr>
+                    <td><%= d.airport %> </td>
+                    <td><%= d.arrival %> </td>
+                </tr>
+                <% }); %>
+        </table>
+
+        <form action="/flights/<%= flight.id %>/destinations" method="POST">
+            <label>Arrival:</label>
+            <input type="datetime-local" name="arrival">
+            <label>Destination:</label>
+            <select name="airport">
+              <option value="SAN">SAN</option>
+              <option value="AUS">AUS</option>
+              <option value="LAX">LAX</option>
+              <option value="SEA">SEA</option>
+              <option value="DAL">DAL</option>
+            </select>
+            <input type="submit" value="Add">
+          </form>
